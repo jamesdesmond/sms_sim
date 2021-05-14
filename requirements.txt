@@ -1,3 +1,4 @@
 faker
 scipy
 pytest
+joblib
