@@ -2,6 +2,7 @@ import random
 import string
 
 from faker import Faker
+
 # I have used this lib for past projects, so it was quick at hand. Probably could have just generated XXX-XXX-XXXX
 fake = Faker('en-US')
 

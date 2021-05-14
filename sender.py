@@ -1,9 +1,13 @@
+import logging
 import random
+import sys
 import time
 
 import scipy.stats as stats
 
 import producer
+
+logging.basicConfig(stream=sys.stdout)
 
 
 class Sender:
@@ -12,6 +16,8 @@ class Sender:
         # returns a list, with specifed mean, std. dev. of length: rand_iter
         lower, upper = 0, max_wait
         mu, sigma = wait_time_mean, 1
+        # truncnorm is used here as when I used normalvariate I would get negative random waits. I could abs() them,
+        # but it throws off the configurable mean
         return (stats.truncnorm((lower - mu) / sigma, (upper - mu) / sigma, loc=mu, scale=sigma)).rvs(
             rand_iter).tolist()
 
@@ -41,10 +47,9 @@ class Sender:
                 wait_time = (self.wait_times.pop())
             if not test:
                 time.sleep(wait_time)
-            # TODO: log this
-            # print(f'TO: {msg.phone_number}')
-            # print(f'BODY: {msg.message}')
-            # print(f'WAIT TIME: {wait_time} sec.')
+            logging.info(f'TO: {msg.phone_number}')
+            logging.info(f'BODY: {msg.message}')
+            logging.info(f'WAIT TIME: {wait_time} sec.')
             return wait_time
         else:
             return 0

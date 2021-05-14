@@ -8,7 +8,7 @@ import sender
 mean = 3
 fail_rate = 0.1
 max_wait = 5
-num_messages = 100000
+num_messages = 10000
 
 
 @pytest.fixture()
@@ -32,7 +32,7 @@ def test_mean(times):
 def test_fail_rate(times):
     # The sender also has a configurable failure rate.
     failures = times.count(0)
-    fudge_factor = 0.1 # magic number here as fail_rate is a probability so unsure how else to derive a fudge factor
+    fudge_factor = 0.1  # magic number here as fail_rate is a probability so unsure how else to derive a fudge factor
     print(f'fail rate: {(failures / num_messages)}')
     assert (failures / num_messages) <= fail_rate + fudge_factor or (
-                failures / num_messages) >= fail_rate - fudge_factor
+            failures / num_messages) >= fail_rate - fudge_factor
