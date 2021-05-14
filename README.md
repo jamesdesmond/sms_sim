@@ -28,7 +28,7 @@ reasonable unit testing.
 - The progress_monitor is supposed to update every N seconds. I have implemented this, but the progress monitor will also print at the beginning and end of execution.
 - The progress_monitor will attempt to clear the term it is running on when it refreshes, this doesn't work on Pycharm's output.
 - The progress_monitor's `__str__()` method has a few things commented out because they were not specifically asked for in the assignment, but they were helpful for verifying correctness.
-- The requirements don't mention if a sender should be able to be added to a Progress Monitor that is already running. My current solution does not support adding senders.
+- The requirements don't mention if a sender should be able to be added to a Progress Monitor that is already running. My current solution does not support adding senders once exec() is called.
 - The requirements don't mention if any retry logic should be implemented. If needed I would just need to add a config value: max_retries, and if fail, recall send_message unless it has already been called == max_retries
 - My first attempt at a solution was single threaded, and simulating 28 seconds of time.sleep() took me 29 seconds. time.sleep() is not GIL blocking, so threading should be a great solution. After implementing joblib's Parallel() I was able to simulate 33 seconds of time.sleep() in just 7 seconds of realtime. (Running on CPU: Intel(R) Core(TM) i7-7700K CPU @ 4.20GHz)
     - Build settings:
