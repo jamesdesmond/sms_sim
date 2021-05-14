@@ -17,7 +17,7 @@ You are free in the programming language you choose, but your code should come w
 reasonable unit testing.
 
 # How to run
-`cd sms_sim/`
-`pip install -r requirements.txt`
-`python main.py`
-`pytest`
+- `cd sms_sim/`
+- `pip install -r requirements.txt`
+- `python main.py`
+- `pytest`
