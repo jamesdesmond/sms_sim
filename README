@@ -15,8 +15,6 @@ One instance each for the producer and the progress monitor will be started whil
 number of senders can be started with different mean processing time and error rate settings.
 You are free in the programming language you choose, but your code should come with
 reasonable unit testing.
-Please submit the code test at least two business days before the interview, so we have time to
-review it.
 
 # How to run
 `cd sms_sim/`

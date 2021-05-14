@@ -1,5 +1,5 @@
-import os
-import threading
+import os # used to clear the terminal
+import threading # needed to print without getting blocked by sleep()
 
 import producer
 import sender
@@ -19,8 +19,9 @@ class ProgressMonitor:
         self.times = []
         self.avg_time = 0  # (in seconds)
 
-    def add_sender(self, sender: sender.Sender):
-        self.senders.append(sender)
+    # TODO: allow senders to be added while ProgressMonitor is printing
+    def add_sender(self, send: sender.Sender):
+        self.send.append(sender)
 
     def __str__(self):
         # {self.msg_sent + self.msg_fail}/{len(self.producer.messages)}\n' \
@@ -28,15 +29,15 @@ class ProgressMonitor:
             f'Average time per message: {self.avg_time} sec.'
 
     def exec(self):
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print(self)
         # This timer begins the printing loop
         print_thread = threading.Timer(self.refresh_rate, self.exec)
         print_thread.start()
         # these loops will run simultaniously as the printing thread
         for msg in self.producer.messages:
-            for sender in self.senders:
-                res = sender.send_message(msg)
+            for send in self.senders:
+                res = send.send_message(msg)
                 if res != 0:
                     self.msg_sent = self.msg_sent + 1
                     self.times.append(res)

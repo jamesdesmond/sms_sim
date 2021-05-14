@@ -2,7 +2,7 @@ import random
 import string
 
 from faker import Faker
-
+# I have used this lib for past projects, so it was quick at hand. Probably could have just generated XXX-XXX-XXXX
 fake = Faker('en-US')
 
 
@@ -22,7 +22,7 @@ class Message:
 
 
 def get_messages(num_messages=1000):
-    # returns a list of Message objects containing a phone number, and a message. default length of 1000
+    # returns a list of Message objects containing a phone number, and a message
     return [(Message()) for i in range(num_messages)]
 
 
