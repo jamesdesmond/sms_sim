@@ -21,4 +21,4 @@ reasonable unit testing.
 - `cd sms_sim/`
 - `pip install -r requirements.txt`
 - `python main.py`
-- `pytest`
+- `python -m pytest`
